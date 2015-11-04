@@ -4,26 +4,26 @@
 <xsd:import namespace="http://wsservers/" schemaLocation="http://localhost:8003/ws/Batch?xsd=1"></xsd:import>
 </xsd:schema>
 </types>
-<message name="acceptData">
-<part name="arg0" type="tns:meassure"></part>
-</message>
-<message name="acceptDataResponse"></message>
 <message name="acceptError">
 <part name="arg0" type="tns:errorTypes"></part>
 </message>
 <message name="acceptErrorResponse"></message>
+<message name="acceptData">
+<part name="arg0" type="tns:meassure"></part>
+</message>
+<message name="acceptDataResponse"></message>
 <message name="getStatus"></message>
 <message name="getStatusResponse">
 <part name="return" type="xsd:base64Binary"></part>
 </message>
 <portType name="IBatchServer">
-<operation name="acceptData">
-<input wsam:Action="http://wsservers/IBatchServer/acceptDataRequest" message="tns:acceptData"></input>
-<output wsam:Action="http://wsservers/IBatchServer/acceptDataResponse" message="tns:acceptDataResponse"></output>
-</operation>
 <operation name="acceptError">
 <input wsam:Action="http://wsservers/IBatchServer/acceptErrorRequest" message="tns:acceptError"></input>
 <output wsam:Action="http://wsservers/IBatchServer/acceptErrorResponse" message="tns:acceptErrorResponse"></output>
+</operation>
+<operation name="acceptData">
+<input wsam:Action="http://wsservers/IBatchServer/acceptDataRequest" message="tns:acceptData"></input>
+<output wsam:Action="http://wsservers/IBatchServer/acceptDataResponse" message="tns:acceptDataResponse"></output>
 </operation>
 <operation name="getStatus">
 <input wsam:Action="http://wsservers/IBatchServer/getStatusRequest" message="tns:getStatus"></input>
@@ -32,7 +32,7 @@
 </portType>
 <binding name="BatchServerImplPortBinding" type="tns:IBatchServer">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc"></soap:binding>
-<operation name="acceptData">
+<operation name="acceptError">
 <soap:operation soapAction=""></soap:operation>
 <input>
 <soap:body use="literal" namespace="http://wsservers/"></soap:body>
@@ -41,7 +41,7 @@
 <soap:body use="literal" namespace="http://wsservers/"></soap:body>
 </output>
 </operation>
-<operation name="acceptError">
+<operation name="acceptData">
 <soap:operation soapAction=""></soap:operation>
 <input>
 <soap:body use="literal" namespace="http://wsservers/"></soap:body>
