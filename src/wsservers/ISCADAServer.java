@@ -16,4 +16,5 @@ public interface ISCADAServer
     @WebMethod void addWater(int sec);
     @WebMethod void addFertilizer(int sec);
     @WebMethod void addCO2(int sec);
+    @WebMethod void executeOrder(String order);
 }

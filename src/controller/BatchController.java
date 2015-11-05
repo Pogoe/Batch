@@ -6,7 +6,7 @@
 package controller;
 
 import plccommunication.*;
-import GreenHouseAPI.*;
+import GreenhouseAPI.*;
 import java.util.BitSet;
 
 /**

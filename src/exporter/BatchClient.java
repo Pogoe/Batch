@@ -9,7 +9,7 @@ public class BatchClient
     private BatchServerImplService service;
     private IBatchServer server;
     
-    public void connect()
+    public BatchClient()
     {
         service = new BatchServerImplService();
         server = service.getBatchServerImplPort();

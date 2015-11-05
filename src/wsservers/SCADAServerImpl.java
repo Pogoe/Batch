@@ -46,4 +46,12 @@ public class SCADAServerImpl implements ISCADAServer
     {
         
     }
+
+    @Override
+    public void executeOrder(String order)
+    {
+        System.out.println("\nStarting order: ");
+        System.out.println(order);
+        System.out.println("Order finished!");
+    }
 }
