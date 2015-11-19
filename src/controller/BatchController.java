@@ -1,6 +1,7 @@
 package controller;
 
 import batchserver.IBatchExporter;
+import java.rmi.AccessException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -16,7 +17,11 @@ public class BatchController
         {
             server = (IBatchReciever) LocateRegistry.getRegistry("localhost", 7000).lookup("SCADA");
             server.connectToServer(greenhouse);
-        } catch (RemoteException ex)
+        } catch(AccessException ex)
+        {
+            System.err.println("Unable to bind object: " + ex);
+        }
+        catch (RemoteException ex)
         {
             System.err.println("Remote communication error: " + ex);
         } catch (NotBoundException ex)

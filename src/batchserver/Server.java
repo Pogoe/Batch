@@ -3,6 +3,7 @@ package batchserver;
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
+import javax.swing.JOptionPane;
 
 public class Server
 {
@@ -13,7 +14,8 @@ public class Server
     {
         try
         {
-            LocateRegistry.createRegistry(PORT).bind(NAME, new BatchExporterImpl());
+            String s = JOptionPane.showInputDialog("Please provide a name for the batch controller", "Batch1");
+            LocateRegistry.createRegistry(PORT).bind(NAME, new BatchExporterImpl(s));
         } catch (RemoteException ex)
         {
             System.err.println("Remote communication error: " + ex);

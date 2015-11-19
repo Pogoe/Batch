@@ -6,13 +6,20 @@ import java.util.Map;
 
 public class BatchExporterImpl extends UnicastRemoteObject implements IBatchExporter
 {
-    public BatchExporterImpl() throws RemoteException
+    private int capacity = 3000;
+    private String name;
+    private Map<String, Integer> order;
+    private int currentCapacity;
+    private int removedUnits;
+    
+    public BatchExporterImpl(String name) throws RemoteException
     {
-        
+        this.name = name;
     }
     @Override
-    public void startOrder(Map<String, Double> order) throws RemoteException
+    public void startOrder(Map<String, Integer> order) throws RemoteException
     {
+        this.order = order;
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -57,5 +64,34 @@ public class BatchExporterImpl extends UnicastRemoteObject implements IBatchExpo
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public int getCapacity() throws RemoteException
+    {
+        return capacity;
+    }
     
+    @Override
+    public String getName()
+    {
+        return name;
+    }
+    
+    @Override
+    public Map<String, Integer> getCurrentOrder()
+    {
+        return order;
+    }
+    
+    @Override
+    public int getCurrentCapacity()
+    {
+        return currentCapacity;
+    }
+    
+    @Override
+    public int getRemovedUnits()
+    {
+        return removedUnits;
+    }
 }
