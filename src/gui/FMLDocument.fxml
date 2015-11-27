@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.chart.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GUIController">
+   <children>
+      <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+          <Tab fx:id="startTab" text="Start">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="temperaturLabel" layoutX="150.0" layoutY="79.0" text="Temperature:" />
+                        <Label fx:id="humidityLabel" layoutX="154.0" layoutY="126.0" text="Humidity:" />
+                        <Label fx:id="waterLevelLabel" layoutX="146.0" layoutY="175.0" text="Water Level:" />
+                        <Label fx:id="lightLabel" layoutX="166.0" layoutY="224.0" text="Light:" />
+                        <TextField fx:id="tempTextField" editable="false" layoutX="291.0" layoutY="74.0" opacity="0.24" />
+                        <TextField fx:id="humidityTextField" editable="false" layoutX="291.0" layoutY="121.0" opacity="0.24" />
+                        <TextField fx:id="waterLevelTextField" editable="false" layoutX="291.0" layoutY="170.0" opacity="0.24" />
+                        <TextField fx:id="lightTextField" editable="false" layoutX="291.0" layoutY="219.0" opacity="0.24" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab fx:id="temperatureTab" text="Temperature">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <LineChart fx:id="lineChartPane2" prefHeight="367.0" prefWidth="600.0" title="PLC View" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <xAxis>
+                            <CategoryAxis label="Time" side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="Value" side="LEFT" />
+                          </yAxis>
+                        </LineChart>
+                        <Button layoutX="508.0" layoutY="7.0" mnemonicParsing="false" text="Connect" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab fx:id="humidityWaterTab" text="Humidity/Water Level">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <LineChart fx:id="lineChartPane" prefHeight="367.0" prefWidth="600.0" title="PLC View" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <xAxis>
+                              <NumberAxis label="Time" side="BOTTOM" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis label="Value" side="LEFT" />
+                           </yAxis>
+                        </LineChart>
+                        <Button layoutX="509.0" layoutY="14.0" mnemonicParsing="false" text="Connect" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

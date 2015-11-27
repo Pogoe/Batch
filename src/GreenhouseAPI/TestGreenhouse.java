@@ -23,14 +23,12 @@ public class TestGreenhouse
         //SerialConnection.getPortList("COM1");
 
         IGreenhouse api = new Greenhouse(con);
-        //api.SetRedLight(50);
-        //api.SetTemperature(273 + 25);
-        //api.SetFanSpeed(1);
-        //double outdoorTemperature; 
-        //while (true)
-        //   outdoorTemperature = api.ReadTemp2();
-
-        //System.exit(3);
+        api.SetRedLight(50);
+        api.SetTemperature(273 + 25);
+        api.SetFanSpeed(1);
+        double outdoorTemperature; 
+        while (true)
+           outdoorTemperature = api.ReadTemp2();
     }
 
 }
