@@ -7,7 +7,7 @@ import java.util.Map;
 public interface IBatchExporter extends Remote
 {
     void startOrder(Map<String, Integer> order) throws RemoteException;
-    void setTemp(double temp) throws RemoteException;
+    void setTemp(int temp) throws RemoteException;
     void addMoist(int level) throws RemoteException;
     void addWater(int sec) throws RemoteException;
     void setRedLight(int level) throws RemoteException;

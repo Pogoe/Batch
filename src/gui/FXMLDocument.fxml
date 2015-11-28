@@ -37,7 +37,7 @@
                             <CategoryAxis label="Time" side="BOTTOM" />
                           </xAxis>
                           <yAxis>
-                            <NumberAxis label="Value" side="LEFT" />
+                            <NumberAxis autoRanging="false" label="Value" side="LEFT" />
                           </yAxis>
                         </LineChart>
                         <Button layoutX="508.0" layoutY="7.0" mnemonicParsing="false" text="Connect" />

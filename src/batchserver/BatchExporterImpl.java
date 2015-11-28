@@ -1,16 +1,14 @@
 package batchserver;
 
+import controller.BatchController;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Map;
 
 public class BatchExporterImpl extends UnicastRemoteObject implements IBatchExporter
 {
-    private int capacity = 3000;
+    private BatchController controller = new BatchController();
     private String name;
-    private Map<String, Integer> order;
-    private int currentCapacity;
-    private int removedUnits;
     
     public BatchExporterImpl(String name) throws RemoteException
     {
@@ -19,56 +17,55 @@ public class BatchExporterImpl extends UnicastRemoteObject implements IBatchExpo
     @Override
     public void startOrder(Map<String, Integer> order) throws RemoteException
     {
-        this.order = order;
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        controller.startOrder(order);
     }
 
     @Override
-    public void setTemp(double temp) throws RemoteException
+    public void setTemp(int temp) throws RemoteException
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        controller.getGreenhouse().SetTemperature(temp);
     }
 
     @Override
     public void addMoist(int level) throws RemoteException
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        controller.getGreenhouse().SetMoisture(level);
     }
 
     @Override
     public void addWater(int sec) throws RemoteException
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        controller.getGreenhouse().AddWater(sec);
     }
 
     @Override
     public void setRedLight(int level) throws RemoteException
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        controller.getGreenhouse().SetRedLight(level);
     }
 
     @Override
     public void setBlueLight(int level) throws RemoteException
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        controller.getGreenhouse().SetBlueLight(level);
     }
 
     @Override
     public void setFanSpeed(int level) throws RemoteException
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        controller.getGreenhouse().SetFanSpeed(level);
     }
 
     @Override
     public boolean isExecuting() throws RemoteException
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return controller.isExecuting();
     }
 
     @Override
     public int getCapacity() throws RemoteException
     {
-        return capacity;
+        return controller.getCapacity();
     }
     
     @Override
@@ -80,18 +77,18 @@ public class BatchExporterImpl extends UnicastRemoteObject implements IBatchExpo
     @Override
     public Map<String, Integer> getCurrentOrder()
     {
-        return order;
+        return controller.getOrder();
     }
     
     @Override
     public int getCurrentCapacity()
     {
-        return currentCapacity;
+        return controller.getCurrentCapacity();
     }
     
     @Override
     public int getRemovedUnits()
     {
-        return removedUnits;
+        return controller.getRemovedUnits();
     }
 }
