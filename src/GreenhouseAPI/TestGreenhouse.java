@@ -1,18 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GreenhouseAPI;
 
 import plccommunication.UDPConnection;
 import plccommunication.PLCConnection;
 
-/**
- * API tester
- *
- * @author sps
- */
 public class TestGreenhouse
 {
     public static void main(String[] args)
@@ -23,12 +13,11 @@ public class TestGreenhouse
         //SerialConnection.getPortList("COM1");
 
         IGreenhouse api = new Greenhouse(con);
-        api.SetRedLight(50);
-        api.SetTemperature(273 + 25);
-        api.SetFanSpeed(1);
-        double outdoorTemperature; 
-        while (true)
-           outdoorTemperature = api.ReadTemp2();
+        api.SetBlueLight(50);
+        api.SetFanSpeed(0);
+        while(true)
+        {
+            System.out.println(api.ReadTemp1());
+        }
     }
-
 }
