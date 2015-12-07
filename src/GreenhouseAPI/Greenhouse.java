@@ -4,16 +4,19 @@ import plccommunication.PLCConnection;
 import plccommunication.Message;
 import plccommunication.ICommands;
 import java.util.BitSet;
+import java.util.Observable;
 
 /**
  * API to communicate to the PLC
  *
  * @author Steffen Skov
  */
-public class Greenhouse implements IGreenhouse, ICommands
+public class Greenhouse extends Observable implements IGreenhouse, ICommands
 {
     private PLCConnection conn;
     private Message mess;
+    private int redLight;
+    private int blueLight;
 
     /**
      * Create greenhouse API
@@ -47,6 +50,7 @@ public class Greenhouse implements IGreenhouse, ICommands
         {
             System.out.println("Set temperatur setpoint to " + kelvin);
             mess.setData(kelvin - 273);
+            notifyObservers();
             return conn.send();
         }
         return false;
@@ -65,6 +69,7 @@ public class Greenhouse implements IGreenhouse, ICommands
         if (moist > 10 && moist < 90)
         {
             mess.setData(moist);
+            notifyObservers();
             return conn.send();
         }
         return false;
@@ -79,12 +84,14 @@ public class Greenhouse implements IGreenhouse, ICommands
     @Override
     public boolean SetRedLight(int level)
     {
+        redLight = level;
         System.out.println("Set red light to " + level);
         mess = new Message(REDLIGHT_SETPOINT);
         if (level >= 0 && level < 100)
         {
             mess.setData(level);
             conn.addMessage(mess);
+            notifyObservers();
             return conn.send();
         }
         return false;
@@ -99,10 +106,12 @@ public class Greenhouse implements IGreenhouse, ICommands
     @Override
     public boolean SetBlueLight(int level)
     {
+        blueLight = level;
         mess = new Message(BLUELIGHT_SETPOINT);
         if (level >= 0 && level < 100)
         {
             mess.setData(level);
+            notifyObservers();
             return conn.send();
         }
         return false;
@@ -122,6 +131,7 @@ public class Greenhouse implements IGreenhouse, ICommands
         {
             mess = new Message(ADDWATER);
             mess.setData(sec);
+            notifyObservers();
             return conn.send();
         }
         return false;
@@ -378,8 +388,21 @@ public class Greenhouse implements IGreenhouse, ICommands
         {
             mess.setData(speed);
             conn.addMessage(mess);
+            notifyObservers();
             return conn.send();
         }
         return false;
+    }
+    
+    @Override
+    public int getRedLight()
+    {
+        return redLight;
+    }
+    
+    @Override
+    public int getBlueLight()
+    {
+        return blueLight;
     }
 }

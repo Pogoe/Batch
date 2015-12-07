@@ -1,5 +1,6 @@
 package batchserver;
 
+import controller.BatchController;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.Map;
@@ -19,4 +20,5 @@ public interface IBatchExporter extends Remote
     Map<String, Integer> getCurrentOrder() throws RemoteException;
     int getCurrentCapacity() throws RemoteException;
     int getRemovedUnits() throws RemoteException;
+    BatchController getController();
 }

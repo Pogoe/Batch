@@ -1,6 +1,7 @@
 package GreenhouseAPI;
 
 import java.util.BitSet;
+import java.util.Observer;
 
 public interface IGreenhouse
 {
@@ -41,4 +42,10 @@ public interface IGreenhouse
     byte[] GetStatus();
 
     boolean SetFanSpeed(int speed);
+    
+    int getRedLight();
+    
+    int getBlueLight();
+    
+    void addObserver(Observer o);
 }

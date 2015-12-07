@@ -91,4 +91,10 @@ public class BatchExporterImpl extends UnicastRemoteObject implements IBatchExpo
     {
         return controller.getRemovedUnits();
     }
+
+    @Override
+    public BatchController getController()
+    {
+        return controller;
+    }
 }

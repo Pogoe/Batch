@@ -10,7 +10,7 @@ public class Server
     public static final int PORT = 8000;
     public static final String NAME = "Batch";
     
-    public static void main(String[] args)
+    public static void startServer()
     {
         try
         {
